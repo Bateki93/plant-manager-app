@@ -1,0 +1,40 @@
+<h2>Liste des Plantes</h2>
+
+<div *ngIf="plants$ | async as plants; else loading">
+  
+  <div *ngIf="plants.length > 0; else noPlants">
+    <ul class="plant-list">
+      <li *ngFor="let plant of plants">
+        
+        <h3 
+          [routerLink]="['/plants', plant.id]" 
+          class="plant-title-link"
+        >
+          {{ plant.name }} ({{ plant.species }})
+        </h3>
+        
+        <p>
+          **Fréquence d'arrosage:** {{ plant.frequencyDays }} jours<br>
+          **Dernier arrosage:** {{ plant.lastWatered ? (plant.lastWatered | date: 'mediumDate') : 'Jamais' }}
+        </p>
+        
+        <button 
+          (click)="onWaterPlant(plant.id)" 
+          class="water-button"
+        >
+          💧 Arroser Maintenant
+        </button>
+        <hr>
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noPlants>
+    <p>Aucune plante trouvée. Veuillez en ajouter via l'API NestJS.</p>
+  </ng-template>
+
+</div>
+
+<ng-template #loading>
+  <p>Chargement des plantes...</p>
+</ng-template>

@@ -1,0 +1,36 @@
+<div *ngIf="plant$ | async as plant; else notFound" class="plant-detail-card">
+  
+  <h2>Détails de {{ plant.name }}</h2>
+
+  <div class="watering-info">
+    <h3>Arrosage</h3>
+    <p><strong>Fréquence:</strong> Tous les {{ plant.frequencyDays }} jours</p>
+    <p><strong>Quantité d'eau:</strong> {{ plant.waterQuantity }}</p>
+    <p>
+      <strong>Dernier arrosage:</strong> 
+      {{ plant.lastWatered ? (plant.lastWatered | date: 'mediumDate') : 'Jamais encore' }}
+    </p>
+  </div>
+  
+  <div class="watering-history">
+    <h3>Historique des arrosages ({{ plant.wateringEvents.length }})</h3>
+    <ul *ngIf="plant.wateringEvents.length > 0">
+      <li *ngFor="let event of plant.wateringEvents">
+        Le {{ event.wateringDate | date: 'medium' }}
+      </li>
+    </ul>
+    <p *ngIf="plant.wateringEvents.length === 0">Aucun historique enregistré.</p>
+  </div>
+  
+  <button [routerLink]="['/plants']" class="back-button">← Retour à la liste</button>
+
+</div>
+
+<ng-template #notFound>
+  <div class="error-message">
+    <h2>Plante non trouvée 😥</h2>
+    <p>L'identifiant spécifié ne correspond à aucune plante.</p>
+    <button [routerLink]="['/plants']" class="back-button">Retour à la liste</button>
+  </div>
+</ng-template>
+

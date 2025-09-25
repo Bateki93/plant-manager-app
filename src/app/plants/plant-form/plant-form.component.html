@@ -1,0 +1,65 @@
+<section class="plant-form-container">
+    <h2>Ajouter une Nouvelle Plante 🌱</h2>
+
+    <form [formGroup]="plantForm" (ngSubmit)="onSubmit()" class="plant-form">
+      
+      <div class="form-group">
+        <label for="name">Nom commun:</label>
+        <input id="name" type="text" formControlName="name" placeholder="Ex: Ficus lyrata" required>
+        <div *ngIf="plantForm.get('name')?.invalid && plantForm.get('name')?.touched" class="error">
+          Le nom est requis.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="species">Espèce (Nom botanique):</label>
+        <input id="species" type="text" formControlName="species" placeholder="Ex: Fiddle-leaf Fig" required>
+      </div>
+
+      <div class="form-group">
+        <label for="purchaseDate">Date d'achat:</label>
+        <input id="purchaseDate" type="date" formControlName="purchaseDate" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="frequencyDays">Fréquence d'arrosage (jours):</label>
+        <input id="frequencyDays" type="number" formControlName="frequencyDays" required min="1">
+      </div>
+
+      <div class="form-group">
+        <label for="waterQuantity">Quantité d'eau:</label>
+        <select id="waterQuantity" formControlName="waterQuantity" required>
+          <option value="Petit">Petit</option>
+          <option value="Moyen">Moyen</option>
+          <option value="Grand">Grand</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="imageUrl">URL de l'image (optionnel):</label>
+        <input id="imageUrl" type="text" formControlName="imageUrl">
+      </div>
+
+      <button type="submit" [disabled]="!plantForm.valid">Ajouter la Plante</button>
+    </form>
+</section>
+
+<style>
+  .plant-form-container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+  .form-group { margin-bottom: 15px; }
+  label { display: block; font-weight: bold; margin-bottom: 5px; color: #333; }
+  input[type="text"], input[type="date"], input[type="number"], select {
+    width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ddd; border-radius: 4px;
+    margin-top: 5px;
+  }
+  .error { color: #d9534f; font-size: 0.85em; margin-top: 5px; }
+  button { 
+    padding: 12px 20px; 
+    background-color: #5cb85c; 
+    color: white; 
+    border: none; 
+    border-radius: 4px; 
+    cursor: pointer; 
+  }
+  button:disabled { background-color: #cccccc; cursor: not-allowed; }
+</style>

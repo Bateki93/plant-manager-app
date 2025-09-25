@@ -1,0 +1,123 @@
+/* Style du conteneur principal */
+.plant-detail-card {
+    max-width: 800px; /* Un peu plus large pour les détails */
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    text-align: center;
+}
+
+h2 {
+    color: #004d40; /* Vert forêt */
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Conteneur pour l'image et l'information générale */
+.detail-content {
+    display: flex;
+    gap: 30px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.image-container {
+    flex-basis: 40%; /* L'image prend 40% de l'espace */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.info-group {
+    flex-basis: 60%; /* Les informations prennent 60% de l'espace */
+}
+
+.info-group p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    border-left: 4px solid #b2dfdb; /* Ligne verte d'accentuation */
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+
+.info-group strong {
+    color: #333;
+    font-weight: 700;
+}
+
+/* --- Section Arrosage et Historique --- */
+
+.watering-info, .watering-history {
+    text-align: left;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f7fcfc; /* Fond très clair */
+    border: 1px dashed #e0f2f1;
+}
+
+.watering-info h3, .watering-history h3 {
+    color: #00796b; /* Vert clair */
+    margin-top: 0;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #e0f2f1;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Historique */
+.watering-history ul {
+    list-style-type: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto; /* Permet le défilement si beaucoup d'événements */
+}
+
+.watering-history li {
+    background-color: #e0f2f1;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: #004d40;
+}
+
+/* Bouton de retour */
+.back-button { 
+    margin-top: 30px;
+    padding: 12px 25px;
+    background-color: #607d8b; /* Gris-bleu neutre pour le retour */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+    text-decoration: none; /* Si [routerLink] est sur le bouton */
+    display: inline-block;
+}
+
+.back-button:hover {
+    background-color: #455a64;
+}
+
+/* --- Mise en page Réactive pour petits écrans --- */
+@media (max-width: 768px) {
+    .detail-content {
+        flex-direction: column;
+    }
+    .image-container, .info-group {
+        flex-basis: 100%;
+    }
+}

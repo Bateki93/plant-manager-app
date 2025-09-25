@@ -1,0 +1,89 @@
+/* src/app/app.component.css */
+
+/* --- Styles de Base et Conteneur --- */
+
+/* Appliquer une police et un fond neutre à tout le corps */
+:host {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f4f6f8; /* Fond légèrement gris-vert clair */
+}
+
+/* Conteneur principal pour le contenu */
+main {
+    padding: 30px;
+    flex-grow: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* --- Styles du Header et de la Navigation --- */
+
+header {
+    background-color: #004d40; /* Vert forêt foncé, professionnel */
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère pour effet de profondeur */
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+nav a {
+    color: #e0f2f1; /* Vert très clair pour contraste */
+    text-decoration: none; /* Supprimer le soulignement par défaut */
+    padding: 8px 15px;
+    margin: 0 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+nav a:hover {
+    background-color: #00796b; /* Vert un peu plus clair au survol */
+    color: white;
+}
+
+/* Séparateur pour les liens */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a:nth-child(2) {
+    margin-left: 15px; /* Espace après le badge/séparateur */
+}
+
+/* --- Style du Badge de Notification (Compteur) --- */
+
+.badge {
+    background-color: #ff6f61; /* Rouge corail pour l'urgence */
+    color: white;
+    padding: 3px 8px;
+    border-radius: 12px; /* Rendre le badge bien rond */
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+/* Supprimer le séparateur '|' ou le masquer si l'on préfère la nav espacée */
+nav a + span {
+    color: #4db6ac; /* Couleur du séparateur */
+}
+
+/* Si vous utilisez le séparateur '|' en HTML, stylisez-le ainsi */
+nav a + span + a {
+    /* Cela permet d'isoler les liens sans trop de hacks HTML */
+}
