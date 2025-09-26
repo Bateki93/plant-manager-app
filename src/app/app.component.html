@@ -1,15 +1,66 @@
-<nav>
-  <ul>
-    <li>
+<header>
+  <div class="container">
+    <h1>{{ title }}</h1>
+    <nav>
       <a [routerLink]="['/plants']">
         Liste des Plantes
-        <span *ngIf="needsWaterCount$ | async as count && count > 0" class="badge">
-            {{ count }} 🔔
+        <!-- Badge de notification utilisant la classe CSS '.badge' -->
+        <span *ngIf="plantsDue$ | async as plants" class="badge-position">
+          <span *ngIf="plants.length > 0" class="badge">
+            {{ plants.length }}
+          </span>
         </span>
-      </a> 
-    </li>
-    <li>
-      <a [routerLink]="['/add']">Ajouter une Plante</a>
-    </li>
-  </ul>
-</nav>
+      </a>
+      <!-- Séparateur visuel si nécessaire (basé sur votre CSS) -->
+      <span> | </span> 
+      <a [routerLink]="['/add']">
+        Ajouter une Plante
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ALERTE ET LISTE DÉTAILLÉE DES PLANTES À ARROSER -->
+  <ng-container *ngIf="plantsDue$ | async as plants">
+    
+    <!-- Alerte affichée S'IL y a des plantes dues (plants.length > 0) -->
+    <div *ngIf="plants.length > 0" 
+         class="alert-container alert-warning" 
+         role="alert">
+      
+      <div class="alert-header">
+        <p class="font-bold text-xl">
+          🚨 Des plantes ont besoin d'être arrosées immédiatement !
+        </p>
+      </div>
+
+      <!-- Liste des plantes à arroser (affichage de la liste complète) -->
+      <h3 class="alert-subtitle">Détails ({{ plants.length }} à arroser) :</h3>
+      <ul class="alert-list">
+        <li *ngFor="let plant of plants">
+          💧 **{{ plant.name }}**
+        </li>
+      </ul>
+
+      <p class="alert-footer">
+        <a [routerLink]="['/plants']">
+          Voir toutes les plantes
+        </a> pour mettre à jour le statut d'arrosage.
+      </p>
+
+    </div>
+
+    <!-- Message de succès affiché si AUCUNE plante n'est due (plants.length === 0) -->
+    <div *ngIf="plants.length === 0" 
+         class="alert-container alert-success" 
+         role="alert">
+      <p class="font-bold">🥳 Mission Accomplie !</p>
+      <p>Toutes vos plantes sont bien hydratées. Continuez ainsi !</p>
+    </div>
+
+  </ng-container>
+
+  <!-- Zone où les composants de route sont affichés -->
+  <router-outlet></router-outlet>
+</main>

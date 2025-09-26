@@ -1,8 +1,7 @@
 /* src/app/app.component.css */
 
-/* --- Styles de Base et Conteneur --- */
+/* --- 1. Styles de Base et Conteneur --- */
 
-/* Appliquer une police et un fond neutre à tout le corps */
 :host {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -11,7 +10,6 @@
     background-color: #f4f6f8; /* Fond légèrement gris-vert clair */
 }
 
-/* Conteneur principal pour le contenu */
 main {
     padding: 30px;
     flex-grow: 1;
@@ -20,7 +18,7 @@ main {
     margin: 0 auto;
 }
 
-/* --- Styles du Header et de la Navigation --- */
+/* --- 2. Styles du Header et de la Navigation --- */
 
 header {
     background-color: #004d40; /* Vert forêt foncé, professionnel */
@@ -29,7 +27,14 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère pour effet de profondeur */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 h1 {
@@ -41,13 +46,14 @@ h1 {
 
 nav a {
     color: #e0f2f1; /* Vert très clair pour contraste */
-    text-decoration: none; /* Supprimer le soulignement par défaut */
+    text-decoration: none;
     padding: 8px 15px;
     margin: 0 5px;
     border-radius: 4px;
     transition: background-color 0.3s ease;
     font-weight: 600;
     font-size: 1rem;
+    position: relative; /* Nécessaire pour positionner le badge */
 }
 
 nav a:hover {
@@ -55,35 +61,91 @@ nav a:hover {
     color: white;
 }
 
-/* Séparateur pour les liens */
-nav {
-    display: flex;
-    align-items: center;
-}
-
-nav a:nth-child(2) {
-    margin-left: 15px; /* Espace après le badge/séparateur */
-}
-
-/* --- Style du Badge de Notification (Compteur) --- */
+/* --- 3. Styles du Badge et Positionnement (Notification) --- */
 
 .badge {
     background-color: #ff6f61; /* Rouge corail pour l'urgence */
     color: white;
     padding: 3px 8px;
-    border-radius: 12px; /* Rendre le badge bien rond */
+    border-radius: 12px;
     font-size: 0.85rem;
     font-weight: 700;
-    margin-left: 5px;
     display: inline-block;
 }
 
-/* Supprimer le séparateur '|' ou le masquer si l'on préfère la nav espacée */
-nav a + span {
-    color: #4db6ac; /* Couleur du séparateur */
+.badge-position {
+    position: absolute;
+    top: -8px; 
+    right: -10px;
+    z-index: 10;
 }
 
-/* Si vous utilisez le séparateur '|' en HTML, stylisez-le ainsi */
-nav a + span + a {
-    /* Cela permet d'isoler les liens sans trop de hacks HTML */
+nav span {
+    color: #4db6ac; /* Couleur du séparateur | */
+    margin: 0 5px;
+}
+
+/* --- 4. Styles des Alertes (Avis d'Arrosage) --- */
+
+.alert-container {
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    border-left: 5px solid; /* Barre latérale pour la couleur d'état */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style Alerte Avertissement (Urgence : besoin d'eau) */
+.alert-warning {
+    background-color: #fffbe6; /* Jaune très clair */
+    border-color: #ffc107; /* Jaune orange */
+    color: #856404; /* Texte jaune foncé */
+}
+
+.alert-warning .alert-header p {
+    color: #856404;
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+.alert-warning .alert-list li {
+    color: #856404;
+}
+
+/* Style Alerte Succès (Mission Accomplie) */
+.alert-success {
+    background-color: #d4edda; /* Vert clair */
+    border-color: #28a745; /* Vert vif */
+    color: #155724; /* Texte vert foncé */
+}
+
+.alert-success p {
+    margin: 0;
+}
+
+/* Styles de la liste dans l'alerte */
+.alert-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 15px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 10px;
+}
+
+.alert-list li {
+    padding: 5px 0;
+    font-size: 1rem;
+}
+
+.alert-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 10px;
+    color: inherit; /* Hérite de la couleur du conteneur parent */
+}
+
+.alert-footer a {
+    color: #004d40; /* Couleur du lien pour rester dans le thème */
+    font-weight: 600;
+    text-decoration: none;
 }
