@@ -11,6 +11,7 @@ import { Plant } from './plant'; // Assurez-vous d'importer le modèle Plant
 export class PlantsService {
   
   // URL de base de votre API NestJS
+  // private apiUrl = 'http://localhost:3000/plants'; 
   private apiUrl = 'https://plant-manager-backend-nestjs.onrender.com/plants'; 
 
   constructor(private http: HttpClient) { }
