@@ -1,0 +1,19 @@
+# render.yaml (à la racine de votre projet Angular)
+
+# Redirige toute requête non trouvée (404) vers l'index.html
+# Ceci est essentiel pour les applications Angular/React/Vue (SPA)
+headers:
+  /index.html:
+    - key: Cache-Control
+      value: public, max-age=0, must-revalidate
+
+# Redirection pour les 404
+# Si le navigateur demande un chemin (ex: /add-plant),
+# Render le redirige vers l'index.html qui gère le routing
+redirects:
+  - from: /
+    to: /index.html
+    status: 200
+  - from: /:path
+    to: /index.html
+    status: 200
